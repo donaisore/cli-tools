@@ -20,9 +20,12 @@ def delete_git_branches():
 
     delete_branch_list = answers.get('delete_branch_list')
 
-    if delete_branch_list:
-        subprocess.call(['git', 'branch', '-D'] + delete_branch_list)
-    print('選択されたブランチはありませんでした。')
+    if not delete_branch_list:
+        print('選択されたブランチはありませんでした。')
+        sys.exit()
+
+    subprocess.call(['git', 'branch', '-D'] + delete_branch_list)
+
 
 
 if __name__ == '__main__':
